@@ -17,4 +17,9 @@ public class TransportadoraService {
         List<Transportadora> transportadoras = repository.findAll();
         return transportadoras;
     }
+
+    public Transportadora save(Transportadora transportadora) {
+        transportadora.setId(null);
+        return this.repository.save(transportadora);
+    }
 }
