@@ -1,6 +1,8 @@
 package com.hive.transportadora.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="ufs")
@@ -12,7 +14,16 @@ public class UF {
 
     private String nome;
 
-    public UF() {}
+    @OneToMany(mappedBy = "uf")
+    private List<Transportadora> transportadoras = new ArrayList<>();
+
+    public UF() {
+    }
+
+    public UF(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
     public Long getId() {
         return id;
@@ -28,5 +39,13 @@ public class UF {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Transportadora> getTransportadoras() {
+        return transportadoras;
+    }
+
+    public void setTransportadoras(List<Transportadora> transportadoras) {
+        this.transportadoras = transportadoras;
     }
 }

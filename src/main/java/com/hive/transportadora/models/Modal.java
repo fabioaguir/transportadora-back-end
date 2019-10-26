@@ -1,6 +1,8 @@
 package com.hive.transportadora.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="modals")
@@ -12,7 +14,16 @@ public class Modal {
 
     private String nome;
 
-    public Modal() {}
+    @OneToMany(mappedBy = "modal")
+    private List<Transportadora> transportadoras = new ArrayList<>();
+
+    public Modal() {
+    }
+
+    public Modal(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
 
     public Long getId() {
         return id;
@@ -28,5 +39,13 @@ public class Modal {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Transportadora> getTransportadoras() {
+        return transportadoras;
+    }
+
+    public void setTransportadoras(List<Transportadora> transportadoras) {
+        this.transportadoras = transportadoras;
     }
 }
