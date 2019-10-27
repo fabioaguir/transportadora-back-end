@@ -1,17 +1,13 @@
-package com.hive.transportadora.models;
+package com.hive.transportadora.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+/**
+ * Class necessária para que possa recuperar todos os atributos a serem
+ * persistidos e por meio deles realizar os tratamentos necessários
+ * para persistência da transportadora na base de dados
+ */
+public class TransportadoraDTO {
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "transportadoras")
-public class Transportadora {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String email;
     private String nome;
     private String empresa;
@@ -24,34 +20,10 @@ public class Transportadora {
     private String logradouro;
     private String numero;
     private Boolean termo;
+    private Long modalId;
+    private Long ufId;
 
-    @ManyToOne
-    @JoinColumn(name = "modal_id")
-    private Modal modal;
-
-    @ManyToOne
-    @JoinColumn(name = "uf_id")
-    private UF uf;
-
-    public Transportadora() {
-    }
-
-    public Transportadora(Long id, String email, String nome, String empresa, String telefone, String celular, String whatsapp, String cep, String cidade, String bairro, String logradouro, String numero, Boolean termo, Modal modal, UF uf) {
-        this.id = id;
-        this.email = email;
-        this.nome = nome;
-        this.empresa = empresa;
-        this.telefone = telefone;
-        this.celular = celular;
-        this.whatsapp = whatsapp;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.termo = termo;
-        this.modal = modal;
-        this.uf = uf;
+    public TransportadoraDTO() {
     }
 
     public Long getId() {
@@ -158,19 +130,19 @@ public class Transportadora {
         this.termo = termo;
     }
 
-    public Modal getModal() {
-        return modal;
+    public Long getModalId() {
+        return modalId;
     }
 
-    public void setModal(Modal modal) {
-        this.modal = modal;
+    public void setModalId(Long modalId) {
+        this.modalId = modalId;
     }
 
-    public UF getUf() {
-        return uf;
+    public Long getUfId() {
+        return ufId;
     }
 
-    public void setUf(UF uf) {
-        this.uf = uf;
+    public void setUfId(Long ufId) {
+        this.ufId = ufId;
     }
 }

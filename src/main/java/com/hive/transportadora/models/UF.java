@@ -1,5 +1,7 @@
 package com.hive.transportadora.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class UF {
 
     private String nome;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "uf")
     private List<Transportadora> transportadoras = new ArrayList<>();
 
