@@ -1,7 +1,5 @@
 package com.hive.transportadora.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +13,7 @@ public class Transportadora {
     private String email;
     private String nome;
     private String empresa;
+    private String cnpj;
     private String telefone;
     private String celular;
     private String whatsapp;
@@ -36,11 +35,14 @@ public class Transportadora {
     public Transportadora() {
     }
 
-    public Transportadora(Long id, String email, String nome, String empresa, String telefone, String celular, String whatsapp, String cep, String cidade, String bairro, String logradouro, String numero, Boolean termo, Modal modal, UF uf) {
+    public Transportadora(Long id, String email, String nome, String empresa, String cnpj, String telefone, String celular,
+                          String whatsapp, String cep, String cidade, String bairro, String logradouro, String numero,
+                          Boolean termo, Modal modal, UF uf) {
         this.id = id;
         this.email = email;
         this.nome = nome;
         this.empresa = empresa;
+        this.cnpj = cnpj;
         this.telefone = telefone;
         this.celular = celular;
         this.whatsapp = whatsapp;
@@ -84,6 +86,14 @@ public class Transportadora {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getTelefone() {

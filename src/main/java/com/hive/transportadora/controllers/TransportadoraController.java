@@ -25,6 +25,13 @@ public class TransportadoraController {
         return new ResponseEntity<>(transportadoras, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+        this.service.verificarTransportdoraExistente(id);
+        Transportadora transportadora = this.service.findById(id);
+        return new ResponseEntity<>(transportadora, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> save(@RequestBody TransportadoraDTO transportadoraDTO) {
         Transportadora transportadora = service.save(transportadoraDTO);
@@ -34,4 +41,20 @@ public class TransportadoraController {
         return ResponseEntity.created(uri).build();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> update(@PathVariable("id") Long id,@RequestBody TransportadoraDTO transportadoraDTO) {
+        this.service.verificarTransportdoraExistente(id);
+        Transportadora transportadora = service.update(transportadoraDTO);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(transportadora.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        this.service.verificarTransportdoraExistente(id);
+        this.service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

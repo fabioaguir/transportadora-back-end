@@ -11,6 +11,7 @@ public class TransportadoraDTO {
     private String email;
     private String nome;
     private String empresa;
+    private String cnpj;
     private String telefone;
     private String celular;
     private String whatsapp;
@@ -56,6 +57,14 @@ public class TransportadoraDTO {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public String getTelefone() {
