@@ -1,9 +1,12 @@
 package com.hive.transportadora.controllers;
 
 import com.hive.transportadora.dto.TransportadoraDTO;
+import com.hive.transportadora.dto.TransportadoraSearchDTO;
 import com.hive.transportadora.models.Transportadora;
 import com.hive.transportadora.services.TransportadoraService;
+import com.hive.transportadora.utils.URL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/transportadora")
@@ -56,5 +60,29 @@ public class TransportadoraController {
         this.service.verificarTransportdoraExistente(id);
         this.service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ResponseEntity<List<TransportadoraSearchDTO>> search(
+            @RequestParam(value = "nome", defaultValue = "") String nome,
+            @RequestParam(value = "ufs", defaultValue = "") String ufs,
+            @RequestParam(value = "cidade", defaultValue = "") String cidade,
+            @RequestParam(value = "modals", defaultValue = "") String modals,
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction
+    ) {
+        String nomeDecoded = URL.decodeParam(nome);
+        String cidadeDecoded = URL.decodeParam(cidade);
+        List<Long> idsUf = URL.decodeLongList(ufs);
+        List<Long> idsModal = URL.decodeLongList(modals);
+
+        //Page<Transportadora> list = this.service.search(nomeDecoded, idsUf, bairroDecoded, idsModal, page, linesPerPage, orderBy, direction);
+        //Page<TransportadoraSearchDTO> listaTransportadora = list.map(obj -> new TransportadoraSearchDTO(obj));
+
+        List<Transportadora> list = this.service.search(nomeDecoded, idsUf, cidadeDecoded, idsModal);
+        List<TransportadoraSearchDTO> listaTransportadora = list.stream().map(obj -> new TransportadoraSearchDTO(obj)).collect(Collectors.toList());
+        return new ResponseEntity<>(listaTransportadora, HttpStatus.OK);
     }
 }

@@ -5,6 +5,7 @@ import com.hive.transportadora.exceptions.ObjectNotFoundException;
 import com.hive.transportadora.models.Modal;
 import com.hive.transportadora.models.Transportadora;
 import com.hive.transportadora.models.UF;
+import com.hive.transportadora.queriesCustomized.TransportadoraQuery;
 import com.hive.transportadora.repositories.ModalRepository;
 import com.hive.transportadora.repositories.TransportadoraRepository;
 import com.hive.transportadora.repositories.UFRepository;
@@ -27,9 +28,11 @@ public class TransportadoraService {
     @Autowired
     private UFRepository ufRepository;
 
+    @Autowired
+    private TransportadoraQuery query;
+
     public List<Transportadora> findAll() {
-        List<Transportadora> transportadoras = repository.findAll();
-        return transportadoras;
+        return repository.findAll();
     }
 
     public Transportadora findById(Long id) {
@@ -55,10 +58,24 @@ public class TransportadoraService {
         this.repository.deleteById(id);
     }
 
-    public Transportadora getInstanceTransportadora(TransportadoraDTO dto) {
+    public List<Transportadora> search (String nome, List<Long> ufs, String cidade, List<Long> modals) {
+        return query.searchForFilter(nome, ufs, cidade, modals);
+    }
+
+    /*public Page<Transportadora> search(String nome, List<Long> ufs, String bairro, List<Long> modals, Integer page,
+                                       Integer linesPerPage, String orderBy, String direction) {
+
+        List<UF> listaUf = this.ufRepository.findAllById(ufs);
+        List<Modal> listaModal = this.modalRepository.findAllById(modals);
+
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return repository.search(nome, listaUf, bairro, listaModal, pageRequest);
+    }*/
+
+    private Transportadora getInstanceTransportadora(TransportadoraDTO dto) {
         Optional<Modal> modal = this.modalRepository.findById(dto.getModalId());
         Optional<UF> uf = ufRepository.findById(dto.getUfId());
-        Transportadora transportadora = new Transportadora(
+        return new Transportadora(
                 dto.getId(),
                 dto.getEmail(),
                 dto.getNome(),
@@ -76,12 +93,11 @@ public class TransportadoraService {
                 modal.orElse(null),
                 uf.orElse(null)
                 );
-
-        return transportadora;
     }
 
     public void verificarTransportdoraExistente(Long id) {
         if(this.findById(id) == null)
             throw new ObjectNotFoundException("Transportadora não encontrada " + id);
     }
+
 }
