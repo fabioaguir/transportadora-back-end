@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * @author Fabio Aguiar
+ */
 @Service
 public class UFQueryCustom {
 

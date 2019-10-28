@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * @author Fabio Aguiar
+ */
 @Service
 public class TransportadoraQueryCustom {
 

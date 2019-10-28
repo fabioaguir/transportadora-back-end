@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * @author Fabio Aguiar
+ */
 @RestController
 @RequestMapping(value = "/modal")
 public class ModalController {

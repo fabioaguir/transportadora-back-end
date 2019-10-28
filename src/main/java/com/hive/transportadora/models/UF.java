@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Fabio Aguiar
+ */
 @Entity
 @Table(name="ufs")
 public class UF {

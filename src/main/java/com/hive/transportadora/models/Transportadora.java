@@ -2,6 +2,9 @@ package com.hive.transportadora.models;
 
 import javax.persistence.*;
 
+/**
+ * @author Fabio Aguiar
+ */
 @Entity
 @Table(name = "transportadoras")
 public class Transportadora {

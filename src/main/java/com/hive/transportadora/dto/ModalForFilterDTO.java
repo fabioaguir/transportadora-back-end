@@ -1,5 +1,8 @@
 package com.hive.transportadora.dto;
 
+/**
+ * @author Fabio Aguiar
+ */
 public class ModalForFilterDTO {
 
     private Long id;

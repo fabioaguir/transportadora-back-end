@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Fabio Aguiar
+ */
 public class URL {
 
     public static String decodeParam(String s) {

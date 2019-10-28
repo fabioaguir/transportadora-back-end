@@ -15,6 +15,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Fabio Aguiar
+ */
 @RestController
 @RequestMapping(value = "/transportadora")
 public class TransportadoraController {

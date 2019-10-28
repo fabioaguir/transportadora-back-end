@@ -1,6 +1,8 @@
 package com.hive.transportadora.dto;
 
 /**
+ * @author Fabio Aguiar
+ *
  * Class necessária para que possa recuperar todos os atributos a serem
  * persistidos e por meio deles realizar os tratamentos necessários
  * para persistência da transportadora na base de dados

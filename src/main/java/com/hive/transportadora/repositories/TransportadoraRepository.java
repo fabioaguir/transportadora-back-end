@@ -11,6 +11,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * @author Fabio Aguiar
+ */
 public interface TransportadoraRepository extends JpaRepository<Transportadora, Long> {
 
     /*@Query("SELECT obj FROM Transportadora obj WHERE obj.nome like %:nome% OR obj.uf IN :uf OR obj.cidade like %:cidade% OR obj.modal IN :modal ")

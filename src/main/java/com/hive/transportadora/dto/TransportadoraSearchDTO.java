@@ -2,6 +2,9 @@ package com.hive.transportadora.dto;
 
 import com.hive.transportadora.models.Transportadora;
 
+/**
+ * @author Fabio Aguiar
+ */
 public class TransportadoraSearchDTO {
 
     private Long id;
