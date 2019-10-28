@@ -15,6 +15,7 @@ public class UF {
     private Long id;
 
     private String nome;
+    private String sigla;
 
     @JsonIgnore
     @OneToMany(mappedBy = "uf")
@@ -23,9 +24,10 @@ public class UF {
     public UF() {
     }
 
-    public UF(Long id, String nome) {
+    public UF(Long id, String nome, String sigla) {
         this.id = id;
         this.nome = nome;
+        this.sigla = sigla;
     }
 
     public Long getId() {
@@ -50,5 +52,13 @@ public class UF {
 
     public void setTransportadoras(List<Transportadora> transportadoras) {
         this.transportadoras = transportadoras;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 }

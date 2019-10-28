@@ -6,7 +6,7 @@ public class UFForFilterDTO {
     private String nome;
     private Long qtdTransportadoras;
 
-    public UFForFilterDTO(){
+    public UFForFilterDTO() {
 
     }
 

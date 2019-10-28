@@ -87,7 +87,7 @@ public class TransportadoraService {
 
     public void verificarTransportdoraExistente(Long id) {
         if(this.findById(id) == null)
-            throw new ObjectNotFoundException("Transportadora não encontrada " + id);
+            throw new ObjectNotFoundException("Transportadora não encontrada com código: " + id);
     }
 
 }
