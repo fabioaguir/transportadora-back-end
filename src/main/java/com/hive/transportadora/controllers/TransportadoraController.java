@@ -67,19 +67,12 @@ public class TransportadoraController {
             @RequestParam(value = "nome", defaultValue = "") String nome,
             @RequestParam(value = "ufs", defaultValue = "") String ufs,
             @RequestParam(value = "cidade", defaultValue = "") String cidade,
-            @RequestParam(value = "modals", defaultValue = "") String modals,
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
-            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
-            @RequestParam(value = "direction", defaultValue = "ASC") String direction
+            @RequestParam(value = "modals", defaultValue = "") String modals
     ) {
         String nomeDecoded = URL.decodeParam(nome);
         String cidadeDecoded = URL.decodeParam(cidade);
         List<Long> idsUf = URL.decodeLongList(ufs);
         List<Long> idsModal = URL.decodeLongList(modals);
-
-        //Page<Transportadora> list = this.service.search(nomeDecoded, idsUf, bairroDecoded, idsModal, page, linesPerPage, orderBy, direction);
-        //Page<TransportadoraSearchDTO> listaTransportadora = list.map(obj -> new TransportadoraSearchDTO(obj));
 
         List<Transportadora> list = this.service.search(nomeDecoded, idsUf, cidadeDecoded, idsModal);
         List<TransportadoraSearchDTO> listaTransportadora = list.stream().map(obj -> new TransportadoraSearchDTO(obj)).collect(Collectors.toList());

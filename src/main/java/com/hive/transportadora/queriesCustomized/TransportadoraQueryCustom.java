@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Service
-public class TransportadoraQuery {
+public class TransportadoraQueryCustom {
 
     @PersistenceContext
     private EntityManager entity;

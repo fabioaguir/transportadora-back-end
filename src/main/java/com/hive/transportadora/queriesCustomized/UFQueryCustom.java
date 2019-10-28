@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
-public class UFQuery {
+public class UFQueryCustom {
 
     @PersistenceContext
     private EntityManager entity;
@@ -17,7 +17,7 @@ public class UFQuery {
     public List<UFForFilterDTO> searchForParamsFilter() {
 
         String hql = "SELECT NEW com.hive.transportadora.dto.UFForFilterDTO(uf.id, uf.nome, count(tra.id)) " +
-                "FROM UF uf LEFT JOIN uf.transportadoras tra GROUP BY uf.id, uf.nome";
+                "FROM Transportadora tra LEFT JOIN tra.uf uf GROUP BY uf.id, uf.nome";
 
         TypedQuery<UFForFilterDTO> query = this.entity.createQuery(hql, UFForFilterDTO.class);
 

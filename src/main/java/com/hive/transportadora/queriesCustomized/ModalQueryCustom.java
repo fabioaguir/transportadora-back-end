@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
-public class ModalQuery {
+public class ModalQueryCustom {
 
     @PersistenceContext
     private EntityManager entity;
@@ -17,7 +17,7 @@ public class ModalQuery {
     public List<ModalForFilterDTO> searchForParamsFilter() {
 
         String hql = "SELECT NEW com.hive.transportadora.dto.ModalForFilterDTO(modal.id, modal.nome, count(tra.id)) " +
-                "FROM Modal modal LEFT JOIN modal.transportadoras tra GROUP BY modal.id, modal.nome";
+                "FROM Transportadora tra LEFT JOIN tra.modal modal GROUP BY modal.id, modal.nome";
 
         TypedQuery<ModalForFilterDTO> query = this.entity.createQuery(hql, ModalForFilterDTO.class);
 
