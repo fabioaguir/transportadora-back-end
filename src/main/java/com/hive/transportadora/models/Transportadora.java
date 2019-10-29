@@ -1,6 +1,8 @@
 package com.hive.transportadora.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author Fabio Aguiar
@@ -13,17 +15,27 @@ public class Transportadora {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @Email
     private String email;
+    @NotEmpty
     private String nome;
+    @NotEmpty
     private String empresa;
+    @NotEmpty
     private String cnpj;
+    @NotEmpty
     private String telefone;
     private String celular;
     private String whatsapp;
     private String cep;
+    @NotEmpty
     private String cidade;
+    @NotEmpty
     private String bairro;
+    @NotEmpty
     private String logradouro;
+    @NotEmpty
     private String numero;
     private Boolean termo;
 
