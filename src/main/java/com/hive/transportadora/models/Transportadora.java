@@ -3,6 +3,8 @@ package com.hive.transportadora.models;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Fabio Aguiar
@@ -41,9 +43,12 @@ public class Transportadora {
     @Lob
     private String logo;
 
-    @ManyToOne
-    @JoinColumn(name = "modal_id")
-    private Modal modal;
+    @ManyToMany
+    @JoinTable(name = "transportadora_modal",
+            joinColumns = @JoinColumn(name = "transportadora_id"),
+            inverseJoinColumns = @JoinColumn(name = "modal_id")
+    )
+    private List<Modal> modal = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "uf_id")
@@ -54,7 +59,7 @@ public class Transportadora {
 
     public Transportadora(Long id, String email, String nome, String empresa, String cnpj, String telefone, String celular,
                           String whatsapp, String cep, String cidade, String bairro, String logradouro, String numero,
-                          Boolean termo, Modal modal, UF uf, String logo) {
+                          Boolean termo, UF uf, String logo) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -69,7 +74,6 @@ public class Transportadora {
         this.logradouro = logradouro;
         this.numero = numero;
         this.termo = termo;
-        this.modal = modal;
         this.uf = uf;
         this.logo = logo;
     }
@@ -186,11 +190,11 @@ public class Transportadora {
         this.termo = termo;
     }
 
-    public Modal getModal() {
+    public List<Modal> getModal() {
         return modal;
     }
 
-    public void setModal(Modal modal) {
+    public void setModal(List<Modal> modal) {
         this.modal = modal;
     }
 

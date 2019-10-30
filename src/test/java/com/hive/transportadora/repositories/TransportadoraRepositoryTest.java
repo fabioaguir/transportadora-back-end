@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,9 +62,11 @@ class TransportadoraRepositoryTest {
 
     private Transportadora getInstanceTransportadora() {
         Optional<UF> uf = this.ufRepository.findById(17L);
-        Optional<Modal> modal = this.modalRepository.findById(1L);
 
-        return new Transportadora(null,
+        Optional<Modal> modal1 = this.modalRepository.findById(1L);
+        Optional<Modal> modal2 = this.modalRepository.findById(2L);
+
+        Transportadora transportadora = new Transportadora(null,
                 "hive.log@gmail.com",
                 "HiveLog",
                 "Hive",
@@ -77,9 +80,12 @@ class TransportadoraRepositoryTest {
                 "Avenida Maria Rita",
                 "500",
                 true,
-                modal.get(),
                 uf.get(),
                 null
         );
+
+        transportadora.getModal().addAll(Arrays.asList(modal1.get(), modal2.get()));
+
+        return transportadora;
     }
 }

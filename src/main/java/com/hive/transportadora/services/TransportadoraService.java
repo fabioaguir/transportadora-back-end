@@ -1,8 +1,10 @@
 package com.hive.transportadora.services;
 
 import com.hive.transportadora.exceptions.ObjectNotFoundException;
+import com.hive.transportadora.models.Modal;
 import com.hive.transportadora.models.Transportadora;
 import com.hive.transportadora.queriesCustomized.TransportadoraQueryCustom;
+import com.hive.transportadora.repositories.ModalRepository;
 import com.hive.transportadora.repositories.TransportadoraRepository;
 import com.hive.transportadora.utils.Cryptography;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class TransportadoraService {
 
     @Autowired
     private TransportadoraRepository repository;
+
+    @Autowired
+    private ModalRepository modalRepository;
 
     @Autowired
     private TransportadoraQueryCustom queryCustom;
@@ -52,7 +57,8 @@ public class TransportadoraService {
     }
 
     public List<Transportadora> search (String nome, List<Long> ufs, String cidade, List<Long> modals) {
-        return this.queryCustom.searchForFilter(nome, ufs, cidade, modals);
+        List<Modal> listModal = modals != null ? this.modalRepository.findAllById(modals) : null;
+        return this.queryCustom.searchForFilter(nome, ufs, cidade, listModal);
     }
 
     public void verificarTransportdoraExistente(Long id) {

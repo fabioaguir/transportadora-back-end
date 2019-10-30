@@ -20,7 +20,7 @@ public class Modal {
     private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "modal")
+    @ManyToMany(mappedBy = "modal")
     private List<Transportadora> transportadoras = new ArrayList<>();
 
     public Modal() {
