@@ -4,6 +4,7 @@ import com.hive.transportadora.dto.TransportadoraDTO;
 import com.hive.transportadora.dto.TransportadoraSearchDTO;
 import com.hive.transportadora.models.Transportadora;
 import com.hive.transportadora.services.TransportadoraService;
+import com.hive.transportadora.utils.Cryptography;
 import com.hive.transportadora.utils.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class TransportadoraController {
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
         this.service.verificarTransportdoraExistente(id);
         Transportadora transportadora = this.service.findById(id);
+        transportadora.setLogo(Cryptography.decoderBase64(transportadora.getLogo()));
         return new ResponseEntity<>(transportadora, HttpStatus.OK);
     }
 
@@ -48,7 +50,7 @@ public class TransportadoraController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@PathVariable("id") Long id,@RequestBody TransportadoraDTO transportadoraDTO) {
+    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody TransportadoraDTO transportadoraDTO) {
         this.service.verificarTransportdoraExistente(id);
         Transportadora transportadora = service.update(transportadoraDTO);
 
@@ -80,4 +82,5 @@ public class TransportadoraController {
         List<TransportadoraSearchDTO> listaTransportadora = list.stream().map(obj -> new TransportadoraSearchDTO(obj)).collect(Collectors.toList());
         return new ResponseEntity<>(listaTransportadora, HttpStatus.OK);
     }
+
 }

@@ -1,5 +1,7 @@
 package com.hive.transportadora.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 /**
  * @author Fabio Aguiar
  *
@@ -25,6 +27,7 @@ public class TransportadoraDTO {
     private Boolean termo;
     private Long modalId;
     private Long ufId;
+    private String logo;
 
     public TransportadoraDTO() {
     }
@@ -155,5 +158,13 @@ public class TransportadoraDTO {
 
     public void setUfId(Long ufId) {
         this.ufId = ufId;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

@@ -78,7 +78,8 @@ class TransportadoraRepositoryTest {
                 "500",
                 true,
                 modal.get(),
-                uf.get()
+                uf.get(),
+                null
         );
     }
 }

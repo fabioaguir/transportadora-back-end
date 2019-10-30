@@ -15,7 +15,7 @@ public class URL {
         try {
             return URLDecoder.decode(s, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            return "";
+            return null;
         }
     }
 

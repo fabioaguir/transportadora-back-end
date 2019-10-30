@@ -1,6 +1,7 @@
 package com.hive.transportadora.dto;
 
 import com.hive.transportadora.models.Transportadora;
+import com.hive.transportadora.utils.Cryptography;
 
 /**
  * @author Fabio Aguiar
@@ -14,6 +15,7 @@ public class TransportadoraSearchDTO {
     private String telefone;
     private String celular;
     private String whatsapp;
+    private String logo;
 
     public TransportadoraSearchDTO() {
     }
@@ -26,6 +28,7 @@ public class TransportadoraSearchDTO {
         this.telefone = transportadora.getTelefone();
         this.celular = transportadora.getCelular();
         this.whatsapp = transportadora.getWhatsapp();
+        this.logo = Cryptography.decoderBase64(transportadora.getLogo());
     }
 
     public Long getId() {
@@ -82,5 +85,13 @@ public class TransportadoraSearchDTO {
 
     public void setWhatsapp(String whatsapp) {
         this.whatsapp = whatsapp;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

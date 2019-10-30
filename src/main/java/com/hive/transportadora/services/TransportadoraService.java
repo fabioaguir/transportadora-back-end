@@ -9,6 +9,7 @@ import com.hive.transportadora.queriesCustomized.TransportadoraQueryCustom;
 import com.hive.transportadora.repositories.ModalRepository;
 import com.hive.transportadora.repositories.TransportadoraRepository;
 import com.hive.transportadora.repositories.UFRepository;
+import com.hive.transportadora.utils.Cryptography;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,7 +85,8 @@ public class TransportadoraService {
                 dto.getNumero(),
                 dto.getTermo(),
                 modal.orElse(null),
-                uf.orElse(null)
+                uf.orElse(null),
+                Cryptography.encoderBase64(dto.getLogo())
                 );
     }
 

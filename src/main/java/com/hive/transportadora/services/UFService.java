@@ -31,7 +31,7 @@ public class UFService {
     }
 
     /**
-     * Método criado para instância dos estado no banco de dados
+     * Método criado para instância das ufs no banco de dados
      */
     public void instanciarUfs() {
         UF uf1 = new UF(null, "Acre", "AC");

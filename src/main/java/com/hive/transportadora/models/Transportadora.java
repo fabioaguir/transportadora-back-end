@@ -38,6 +38,8 @@ public class Transportadora {
     @NotEmpty
     private String numero;
     private Boolean termo;
+    @Lob
+    private String logo;
 
     @ManyToOne
     @JoinColumn(name = "modal_id")
@@ -52,7 +54,7 @@ public class Transportadora {
 
     public Transportadora(Long id, String email, String nome, String empresa, String cnpj, String telefone, String celular,
                           String whatsapp, String cep, String cidade, String bairro, String logradouro, String numero,
-                          Boolean termo, Modal modal, UF uf) {
+                          Boolean termo, Modal modal, UF uf, String logo) {
         this.id = id;
         this.email = email;
         this.nome = nome;
@@ -69,6 +71,7 @@ public class Transportadora {
         this.termo = termo;
         this.modal = modal;
         this.uf = uf;
+        this.logo = logo;
     }
 
     public Long getId() {
@@ -197,5 +200,13 @@ public class Transportadora {
 
     public void setUf(UF uf) {
         this.uf = uf;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }
