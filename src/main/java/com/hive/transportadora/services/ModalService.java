@@ -33,7 +33,7 @@ public class ModalService {
     /**
      * Método criado para instância dos modals no banco de dados
      */
-    public void instanciarModals() {
+    public void instanceModalsInDataBase() {
         Modal modal1 = new Modal(null, "Rodoviário");
         Modal modal2 = new Modal(null, "Aéreo");
         Modal modal3 = new Modal(null, "Aquaviário");

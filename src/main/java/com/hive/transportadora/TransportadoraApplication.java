@@ -60,7 +60,7 @@ public class TransportadoraApplication implements CommandLineRunner {
 		// Descomente as chamadas para gerar instâncias de Modal e Uf automaticamente no banco de dados
 		// Após criar as instâncias comente novamente para não criá-las de novo
 
-		//this.ufService.instanciarUfs();
-		//this.modalService.instanciarModals();
+		//this.ufService.instanceUfsInDataBase();
+		//this.modalService.instanceModalsInDataBase();
 	}
 }

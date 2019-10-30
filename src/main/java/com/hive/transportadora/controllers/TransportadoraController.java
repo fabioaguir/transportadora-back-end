@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,36 +31,50 @@ public class TransportadoraController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
-        this.service.verificarTransportdoraExistente(id);
-        Transportadora transportadora = this.service.findById(id);
-        transportadora.setLogo(Cryptography.decoderBase64(transportadora.getLogo()));
-        return new ResponseEntity<>(transportadora, HttpStatus.OK);
+        try {
+            this.service.verificarTransportdoraExistente(id);
+            Transportadora transportadora = this.service.findById(id);
+            transportadora.setLogo(Cryptography.decoderBase64(transportadora.getLogo()));
+
+            return new ResponseEntity<>(transportadora, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody Transportadora transportadora) {
-        Transportadora result = service.save(transportadora);
+    public ResponseEntity<?> save(@RequestBody Transportadora transportadora) {
+        try {
+            Transportadora result = service.save(transportadora);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(transportadora.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody Transportadora transportadora) {
-        this.service.verificarTransportdoraExistente(id);
-        Transportadora result = service.update(transportadora);
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Transportadora transportadora) {
+        try {
+            this.service.verificarTransportdoraExistente(id);
+            Transportadora result = service.update(transportadora);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(transportadora.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-        this.service.verificarTransportdoraExistente(id);
-        this.service.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            this.service.verificarTransportdoraExistente(id);
+            this.service.delete(id);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

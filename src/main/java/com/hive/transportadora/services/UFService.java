@@ -33,7 +33,7 @@ public class UFService {
     /**
      * Método criado para instância das ufs no banco de dados
      */
-    public void instanciarUfs() {
+    public void instanceUfsInDataBase() {
         UF uf1 = new UF(null, "Acre", "AC");
         UF uf2 = new UF(null, "Alagoas", "AL");
         UF uf3 = new UF(null, "Amapá", "AP");
