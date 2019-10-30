@@ -46,7 +46,8 @@ Dependências utilizadas:
 
 ## Instalação
 Clonar o projeto do repositório `https://github.com/fabioaguir/transportadora-back-end.git` no GitHub,
-e executar na pasta do projeto o comando `mvn install` para instalar as dependências
+estando com o ambiente configurado para java 8 e maven, executar na pasta do projeto o comando `mvn install` 
+para instalar as dependências
 
 ## Observação
 No método `public void run(String... args)` na class `TransportadoraApplication` possui dois métodos para criar instâncias
