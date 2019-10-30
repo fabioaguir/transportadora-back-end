@@ -1,6 +1,5 @@
 package com.hive.transportadora.controllers;
 
-import com.hive.transportadora.dto.TransportadoraDTO;
 import com.hive.transportadora.dto.TransportadoraSearchDTO;
 import com.hive.transportadora.models.Transportadora;
 import com.hive.transportadora.services.TransportadoraService;
@@ -41,8 +40,8 @@ public class TransportadoraController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody TransportadoraDTO transportadoraDTO) {
-        Transportadora transportadora = service.save(transportadoraDTO);
+    public ResponseEntity<Void> save(@RequestBody Transportadora transportadora) {
+        Transportadora result = service.save(transportadora);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(transportadora.getId()).toUri();
@@ -50,9 +49,9 @@ public class TransportadoraController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody TransportadoraDTO transportadoraDTO) {
+    public ResponseEntity<Void> update(@PathVariable("id") Long id, @RequestBody Transportadora transportadora) {
         this.service.verificarTransportdoraExistente(id);
-        Transportadora transportadora = service.update(transportadoraDTO);
+        Transportadora result = service.update(transportadora);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(transportadora.getId()).toUri();
