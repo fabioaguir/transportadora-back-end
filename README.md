@@ -49,7 +49,9 @@ Clonar o projeto do repositório `https://github.com/fabioaguir/transportadora-b
 estando com o ambiente configurado para java 8 e maven, executar na pasta do projeto o comando `mvn install` 
 para instalar as dependências
 
-## Observação
+Para o banco de dados, é preciso ter a base de dados criada com o MySql e configurada no arquivo `application.properties`,
+tendo o banco criado, ao executar a primeira vez o projeto, as tabelas serão criadas.
+
 No método `public void run(String... args)` na class `TransportadoraApplication` possui dois métodos para criar instâncias
 de UFs e Modals populando a DB com tais dados, depois de executar esse métodos uma vez, comente os mesmos para que nas
 próximas execuções da aplicação, os dados das Ufs e Modals não sejam duplicados no banco de dados
